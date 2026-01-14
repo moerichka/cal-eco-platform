@@ -27,7 +27,7 @@ const Header = ({
     return 100 - Math.round((secondsVal * 100) / (MAX_TIMER_IN_MINUTES * 60));
   }, [minutes, seconds]);
 
-  let label = !active ? "expired" : "live";
+  const label = !active ? "expired" : "live";
 
   return (
     <>
@@ -124,7 +124,7 @@ const Body = ({
           <div className="space-y-4 h-48 border-[#3D8DFF] border-[1px] border-solid p-2 mx-2 !mt-0 rounded-lg text-white ">
             {calculating && active ? (
               <div className="flex flex-col items-center justify-center w-full h-full">
-                <img src={calculatingGif} alt="calculating" className="h-40" />
+                <img src={calculatingGif.src} alt="calculating" className="h-40" />
                 <div>Calclulating...</div>
               </div>
             ) : (

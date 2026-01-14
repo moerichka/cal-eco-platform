@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 interface ButtonType {
   onClick?: any;
-  label?: JSX.Element | string;
+  label?: React.ReactNode | string;
   color?: string;
   size?: string;
   customStyle?: string;

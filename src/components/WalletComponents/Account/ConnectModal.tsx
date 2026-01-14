@@ -143,7 +143,7 @@ const ConnectModal: React.FC<ConnectModalProps> = ({
                 />
                 <ConnectButton
                   label="Coinbase Wallet"
-                  image={coinbase_Logo}
+                  image={coinbase_Logo.src}
                   onClick={() => activateConnector("Coinbase Wallet")}
                 />
               </div>

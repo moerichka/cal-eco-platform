@@ -87,7 +87,7 @@ const Body = ({
           {userRound ? (
             <div className="space-y-2 h-48 border-[#3D8DFF] border-[1px] border-solid p-2 mx-2 rounded-lg text-white ">
               <div className="flex flex-col items-center justify-center h-full text-sm">
-                <Tick alt="tick" className="h-32 opacity-70" />
+                <img src={Tick.src} alt="tick" className="h-32 opacity-70" />
                 <div className="flex items-center justify-center gap-1 text-xxs">
                   YOU HAVE ENTERED:
                   <div className="bg-[#596CC4] rounded-lg px-2 py-1">
@@ -303,7 +303,7 @@ export const FlipCardBack = ({
               type="submit"
             />
             <div className="text-xs">
-              You won't be able to remove or change your position once you enter
+              You won&apos;t be able to remove or change your position once you enter
               it.
             </div>
           </div>
@@ -345,7 +345,7 @@ export function Live({
 
   let downPerc = 0;
   let upPerc = 0;
-  let total = totalAmount || 0;
+  const total = totalAmount || 0;
 
   if (total > 0) {
     downPerc = bearAmount === 0 ? bearAmount : total / bearAmount;

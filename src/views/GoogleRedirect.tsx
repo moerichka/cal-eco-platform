@@ -12,7 +12,7 @@ const GoogleRedirect = () => {
   useEffect(() => {
     (async () => {
       try {
-        const payload = urlToJson(location.search);
+        const payload = urlToJson(window.location.search);
         const response = await postApi("/auth/google/auth", payload);
         login(response.data);
         window.location.href = "/";
@@ -22,7 +22,7 @@ const GoogleRedirect = () => {
         window.location.href = "/";
       }
     })();
-  }, [location, login]);
+  }, [login]);
 
   return <div>Hello World redirect</div>;
 };

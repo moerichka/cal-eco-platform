@@ -33,17 +33,17 @@ function ChainSelector() {
       {
         label: "Ethereum",
         key: "1",
-        icon: labelToShow(ethereum_Logo, "Ethereum_logo"),
+        icon: labelToShow(ethereum_Logo.src, "Ethereum_logo"),
       },
       {
         label: "Goerli",
         key: "5",
-        icon: labelToShow(ethereum_Logo, "Ethereum_logo"),
+        icon: labelToShow(ethereum_Logo.src, "Ethereum_logo"),
       },
       {
         label: "Sepolia",
         key: "11155111",
-        icon: labelToShow(ethereum_Logo, "Ethereum_logo"),
+        icon: labelToShow(ethereum_Logo.src, "Ethereum_logo"),
       },
       {
         label: "BNB Chain",
