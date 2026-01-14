@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+"use client";
+
 import React, { Fragment, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { putApi } from "../../services/axios.service";
 import { toast } from "react-toastify";
-import {
-  AuthContext,
-  ActionTypes,
-} from "../../contexts/AuthContext";
+import { AuthContext, ActionTypes } from "../../contexts/AuthContext";
 
 const ChangePassword = () => {
   const {

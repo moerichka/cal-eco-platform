@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
@@ -7,7 +9,7 @@ import Verified from "../../assets/images/verified.svg";
 import StatsUp from "../../assets/images/profile-stats-up.svg";
 import StatsDown from "../../assets/images/profile-stats-down.svg";
 import SettingsIcon from "../../assets/images/Setting.svg";
-import { useNavigate } from "react-router";
+import { ACCESS_TOKEN_LOCAL_STORAGE } from "@/constants/common";
 // import Banner1 from "../../assets/images/stranger-profile-banner1.svg";
 // import Banner2 from "../../assets/images/stranger-profile-banner2.svg";
 
@@ -18,11 +20,15 @@ type Stats = {
 };
 
 const BannerSection = () => {
-  const navigate = useNavigate();
-
   const handleEditProfile = () => {
-    navigate("/edit-profile");
+    window.location.href = "/edit-profile";
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE)) {
+      window.location.href = "/dashboard";
+    }
+  }, []);
 
   return (
     <>
@@ -67,7 +73,7 @@ const UserIntro = () => {
         <p className="font-roboto text-xl leading-normal font-medium text-white">
           {`${user?.firstName} ${user?.lastName}`}
         </p>
-        {!user?.isVerified && <Verified />}
+        {!user?.isVerified && <Verified className="w-6 h-6" />}
       </div>
       <p className="my-2 text-white inline-flex justify-center items-center rounded-lg bg-indigo-700 px-3 font-inter text-sm">
         {user?.username}
@@ -170,7 +176,7 @@ const UserStatsData = () => {
               </div>
             </div>
             <div className="flex justify-end grid-row-3 col-span-1">
-              {+stats.value < 0 ? <StatsDown /> : <StatsUp />}
+              {+stats.value < 0 ? <StatsDown className="w-28 h-28" /> : <StatsUp className="w-28 h-28" />}
             </div>
           </div>
         </Fragment>

@@ -1,4 +1,12 @@
-import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
+"use client";
+
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useForm } from "react-hook-form";
 
 import CopyIcon from "../../assets/images/copy.svg";
@@ -6,6 +14,7 @@ import { getApi, putApi } from "../../services/axios.service";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { ActionTypes, AuthContext } from "../../contexts/AuthContext";
+import { ACCESS_TOKEN_LOCAL_STORAGE } from "@/constants/common";
 
 type InputProps = {
   type: string;
@@ -295,6 +304,12 @@ const EditProfile = () => {
     }
   }, [user, setValue]);
 
+  useEffect(() => {
+    if (!localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE)) {
+      window.location.href = "/dashboard";
+    }
+  }, []);
+
   return (
     <>
       <div className="grid grid-cols-2 col-span-4 gap-4 mx-20">
@@ -305,7 +320,6 @@ const EditProfile = () => {
                 <Input {...field} />
                 {field.name in errors && (
                   <p className="text-sm text-red-600">
-                    {/* @ts-ignore */}
                     {errors[field.name]?.message as string}
                   </p>
                 )}
@@ -316,7 +330,11 @@ const EditProfile = () => {
               label="Update"
               customClass="rounded-md"
               isLoading={isLoading}
-              isValid={Object.values(errors).length === 0 && !isLoading && !isSubmitting}
+              isValid={
+                Object.values(errors).length === 0 &&
+                !isLoading &&
+                !isSubmitting
+              }
             />
           </form>
         </div>

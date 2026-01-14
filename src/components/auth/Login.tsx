@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+"use client";
+
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 
@@ -48,7 +50,7 @@ const Login = () => {
         Login
       </div>
       <p className="self-start text-sm leading-10 text-gray-300 font-inter">
-        Don't have an account?
+        Don&apos;t have an account?
         <a
           href="#"
           onClick={handleRedirectToRegister}
@@ -126,7 +128,7 @@ const Login = () => {
               required: "You must accept the terms and conditions",
             })}
           />
-          I agree to CryptoHunt's Terms and Privacy Policy
+          I agree to CryptoHunt&apos;s Terms and Privacy Policy
           {errors.termsAndConditions && (
             <p className="mt-1 text-red-600 text-sm ml-1">
               {errors.termsAndConditions?.message as string}

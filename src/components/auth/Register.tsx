@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+"use client";
+
 import React, { Fragment, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -138,7 +140,7 @@ const Register = () => {
               required: "You must accept the terms and conditions",
             })}
           />
-          I agree to CryptoHunt's Terms and Privacy Policy
+          I agree to CryptoHunt&apos;s Terms and Privacy Policy
           {errors.termsAndConditions && (
             <p className="mt-1 text-red-600 text-sm ml-1">
               {errors.termsAndConditions.message as string}

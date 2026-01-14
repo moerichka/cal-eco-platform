@@ -516,11 +516,11 @@ const Dashboard: React.FC<{}> = () => {
       <div className="flex items-center mx-20 my-16">
         <div className="flex justify-center w-full gap-8">
           <Back
-            className="rotate-180 cursor-pointer stroke-white fill-white"
+            className="w-16 h-16 rotate-180 cursor-pointer stroke-white fill-white"
             onClick={() => scrollCards("left")}
           />
           <Back
-            className="cursor-pointer stroke-white fill-white"
+            className="w-16 h-16 cursor-pointer stroke-white fill-white"
             onClick={() => scrollCards("right")}
           />
         </div>

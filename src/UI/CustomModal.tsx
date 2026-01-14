@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactElement, useEffect, useRef } from "react";
 
 type Props = {

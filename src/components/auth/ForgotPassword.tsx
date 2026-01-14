@@ -1,4 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+"use client";
+
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { postApi } from "../../services/axios.service";
@@ -41,7 +44,7 @@ const ForgotPassword = () => {
         Reset password
       </div>
       <p className="self-start mt-2 mb-4 text-sm leading-5 text-gray-300 font-inter">
-        Enter your email and we'll send you instructions on how to reset your
+        Enter your email and we&apos;ll send you instructions on how to reset your
         password.
       </p>
 

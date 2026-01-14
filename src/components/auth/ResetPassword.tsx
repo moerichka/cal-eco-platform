@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+"use client";
+
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
 import { urlToJson } from "../../services/common.service";
 import { putApi } from "../../services/axios.service";
 import { toast } from "react-toastify";
@@ -14,8 +15,6 @@ type FormProps = {
 };
 
 const Form = ({ token, closeModal }: FormProps) => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -33,7 +32,7 @@ const Form = ({ token, closeModal }: FormProps) => {
       const result = await putApi(`/users/reset-password/${token}`, data);
       toast.success(result.message || "Done");
       closeModal();
-      navigate("/");
+      window.location.href = "/";
     } catch (e: any) {
       console.log("Error: ", e?.response?.data || e);
       toast.error(e?.response?.data?.message || "Invalid or expired token!");
@@ -68,7 +67,7 @@ const Form = ({ token, closeModal }: FormProps) => {
   const handleRedirectToLogin = (e: any) => {
     e.preventDefault();
     closeModal();
-    navigate("/");
+    window.location.href = "/";
     updateAuthAction(ActionTypes.Login);
   };
 
@@ -128,9 +127,6 @@ const Form = ({ token, closeModal }: FormProps) => {
 };
 
 const ResetPassword = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState("");
 
@@ -139,13 +135,13 @@ const ResetPassword = () => {
   useEffect(() => {
     const urlParams = urlToJson(location.search);
     if (!urlParams || !("token" in urlParams)) {
-      navigate("/");
+      window.location.href = "/";
       return;
     }
 
     setToken(urlParams.token);
     setOpen(true);
-  }, [location, navigate]);
+  }, []);
 
   return (
     <>
