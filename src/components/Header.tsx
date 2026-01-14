@@ -17,11 +17,13 @@ import { AuthContext, ActionTypes } from "../contexts/AuthContext";
 // };
 
 export function Header() {
-  const { updateAuthAction, isAuthenticated } = useContext(AuthContext);
+  const { updateAuthAction, isAuthenticated, toggleModal } =
+    useContext(AuthContext);
   const { account } = useWeb3React();
 
   const handleLogin = () => {
     updateAuthAction(ActionTypes.Login);
+    toggleModal(true);
   }; //TODO
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
