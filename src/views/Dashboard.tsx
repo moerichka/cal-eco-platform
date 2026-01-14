@@ -70,7 +70,7 @@ const Tabs = () => {
   );
 };
 
-const Dashboard: React.FC<{}> = () => {
+const Dashboard = () => {
   const { account } = useWeb3React();
   const {
     lumanagiPredictionV1Contract,
