@@ -10,12 +10,12 @@ const useAuth = () => {
   // Simulate a login action
   const login = (data: any) => {
     // Perform login logic, set user data
-    const { access_token = "", ...rest } = data;
+    const { authToken = "", ...rest } = data;
     setUser({ ...rest });
     console.log("Logged in ::::", data);
-    if (access_token) {
+    if (authToken) {
       setIsAuthenticated(true);
-      localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE, data.access_token);
+      localStorage.setItem(ACCESS_TOKEN_LOCAL_STORAGE, data.authToken);
     }
   };
 
