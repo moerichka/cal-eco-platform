@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useEffect, useState } from "react";
 
 import LumangiLogo from "../assets/images/LumangiLogo.svg";
@@ -7,6 +9,7 @@ import Button from "../UI/Button";
 import { useWeb3React } from "@web3-react/core";
 import ConnectWallet from "./auth/ConnectWallet";
 import { AuthContext, ActionTypes } from "../contexts/AuthContext";
+import Link from "next/link";
 // const style = {
 //   position: "absolute" as "absolute",
 //   top: "50%",
@@ -49,7 +52,7 @@ export function Header() {
           >
             {isAuthenticated && (
               <div className="flex h-full px-4 py-1">
-                <img src={RewardWheel} alt="RewardWheel" className="" />
+                <RewardWheel alt="RewardWheel" className="" />
 
                 <div className="self-end mx-2 text-xl text-white">
                   Bright Mba
@@ -68,7 +71,7 @@ export function Header() {
           </div>
           {isAuthenticated && (
             <div className="flex items-center justify-end px-2 py-1 ml-40 bg-white rounded-lg h-fit">
-              <img src={RewardWheel} alt="RewardWheel" className="w-10 h-10" />
+              <RewardWheel alt="RewardWheel" className="w-10 h-10" />
               <div className="flex flex-col w-full text-xs">
                 <div>Next Roll:</div>
                 <div>8h 13m 22s</div>
@@ -77,13 +80,9 @@ export function Header() {
           )}
         </div>
         <div className="flex items-center self-center justify-self-center">
-          <a className="w-full h-full" href="/">
-            <img
-              src={LumangiLogo}
-              alt="logo"
-              className="max-w-full ml-4 w-60 "
-            />
-          </a>
+          <Link className="w-full h-full" href="/">
+            <LumangiLogo alt="logo" className="max-w-full ml-4 w-60" />
+          </Link>
         </div>
         <div className="flex self-center justify-end space-x-4 justify-self-end ">
           {!isAuthenticated && (

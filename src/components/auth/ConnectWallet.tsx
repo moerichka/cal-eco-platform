@@ -96,7 +96,7 @@ const ConnectWallet: React.FC<ConnectModalProps> = ({
               </h2>
               <div>
                 <p className="self-start text-base leading-10 text-gray-300 font-inter">
-                  Don't have an account?
+                  Don&apos;t have an account?
                   <a
                     href="#aa"
                     className="ml-1 font-semibold text-primary-900-high-emphasis hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-900-high-emphasis/50 rounded-sm"
@@ -110,7 +110,7 @@ const ConnectWallet: React.FC<ConnectModalProps> = ({
                     onClick={() => activateConnector("MetaMask")}
                     className="flex items-center gap-4 w-full rounded-lg border border-gray-600 p-3 text-left hover:border-gray-500 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 active:opacity-90"
                   >
-                    <img src={Metamask} alt="Metamask" />
+                    <Metamask alt="Metamask" className="w-10 h-10" />
                     <span className="px-2 text-lg font-semibold text-white font-inter">
                       Continue with Metamask
                     </span>
@@ -119,7 +119,7 @@ const ConnectWallet: React.FC<ConnectModalProps> = ({
                     type="button"
                     className="flex items-center gap-4 w-full rounded-lg border border-gray-600 p-3 text-left hover:border-gray-500 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 active:opacity-90"
                   >
-                    <img src={Phantom} alt="Phantom" />
+                    <Phantom alt="Phantom" className="w-10 h-10" />
                     <span className="px-2 text-lg font-semibold text-white font-inter">
                       Continue with Phantom
                     </span>
@@ -129,7 +129,7 @@ const ConnectWallet: React.FC<ConnectModalProps> = ({
                     onClick={() => activateConnector("Coinbase")}
                     className="flex items-center gap-4 w-full rounded-lg border border-gray-600 p-3 text-left hover:border-gray-500 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 active:opacity-90"
                   >
-                    <img src={Coinbase} alt="Coinbase" />
+                    <Coinbase alt="Coinbase" className="w-10 h-10" />
                     <span className="px-2 text-lg font-semibold text-white font-inter">
                       Continue with Coinbase
                     </span>
@@ -139,7 +139,7 @@ const ConnectWallet: React.FC<ConnectModalProps> = ({
                     onClick={() => activateConnector("WalletConnect")}
                     className="flex items-center gap-4 w-full rounded-lg border border-gray-600 p-3 text-left hover:border-gray-500 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 active:opacity-90"
                   >
-                    <img src={WalletConnect} alt="WalletConnect" />
+                    <WalletConnect alt="WalletConnect" className="w-10 h-10" />
                     <span className="px-2 text-lg font-semibold text-white font-inter">
                       Continue with WalletConnect
                     </span>

@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors - using dot notation for nested colors */
+  --color-default-button-bg: rgba(37, 157, 168, 0.08);
+  --color-primary-900-high-emphasis: #259DA8;
+  --color-primary-900-medium-emphasis: #1E7E87;
+  --color-foreground-night-100: rgba(255, 255, 255, 0.03);
+  --color-foreground-night-400: rgba(255, 255, 255, 0.13);
+
+  /* Box Shadow */
+  --shadow-custom: 0px 40.26560592651367px 50.332008361816406px -2.5166003704071045px rgba(0, 0, 0, 0.08), 0px 1.2583001852035522px 1.2583001852035522px 0px rgba(0, 0, 0, 0.08);
+
+  /* Font Sizes */
+  --font-size-xxs: 0.70rem;
+  --font-size-1.25831: 1.25831rem;
+
+  /* Spacing */
+  --spacing-20.58369rem: 20.58369rem;
+  --spacing-1.25831: 0.315rem;
+
+  /* Line Heights */
+  --line-height-2.202: 2.202rem;
+  --line-height-1.1875: 1.1875rem;
+  --line-height-12: 3.2;
+
+  /* Background Sizes */
+  --background-size-auto: auto;
+  --background-size-cover: cover;
+  --background-size-contain: contain;
+  --background-size-100: 100%;
+}
+
+@layer utilities {
+  .bg-custom-gradient {
+    background: var(--background, linear-gradient(135deg, #414595 0%, #00022F 100%));
+  }
+
+  .font-poppins {
+    font-family: var(--font-poppins), Poppins, sans-serif;
+  }
+
+  .font-inter {
+    font-family: var(--font-inter), Inter, sans-serif;
+  }
+
+  /* Custom color utilities for nested colors */
+  .bg-default-button-bg {
+    background-color: var(--color-default-button-bg);
+  }
+
+  .text-primary-900-high-emphasis {
+    color: var(--color-primary-900-high-emphasis);
+  }
+
+  .bg-primary-900-high-emphasis {
+    background-color: var(--color-primary-900-high-emphasis);
+  }
+
+  .text-primary-900-medium-emphasis {
+    color: var(--color-primary-900-medium-emphasis);
+  }
+
+  .bg-primary-900-medium-emphasis {
+    background-color: var(--color-primary-900-medium-emphasis);
+  }
+
+  .bg-foreground-night-100 {
+    background-color: var(--color-foreground-night-100);
+  }
+
+  .bg-foreground-night-400 {
+    background-color: var(--color-foreground-night-400);
+  }
+
+  .text-foreground-night-100 {
+    color: var(--color-foreground-night-100);
+  }
+
+  .text-foreground-night-400 {
+    color: var(--color-foreground-night-400);
+  }
+
+  .border-foreground-night-400 {
+    border-color: var(--color-foreground-night-400);
+  }
+
+  .border-foreground-night-100 {
+    border-color: var(--color-foreground-night-100);
+  }
+
+  /* Shadow utility */
+  .shadow-custom {
+    box-shadow: var(--shadow-custom);
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  #dashboard {
+    background: linear-gradient(176.81deg, #414593 0%, #00022e 100.23%),
+      url("../assets/images/lumangi-cover.png");
+    background-blend-mode: hard-light;
+    background-repeat: no-repeat;
+  }
+
+  .card-data::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-data {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 100%;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    background-color: transparent;
+
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    /* transform: rotateY(180deg); */
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background: linear-gradient(103.31deg,
+        rgba(255, 255, 255, 0) -9.33%,
+        rgba(255, 255, 255, 0.234) 119.91%);
+    backdrop-filter: blur(14.3744px);
+
+    /* background: transparent; */
+    color: black;
+  }
+
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+  .slider-parent {
+    position: relative;
+  }
+
+  .buble {
+    position: relative;
+  }
+
+  .custom-reward-win>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: "50%";
+  }
+
+  .custom-reward-win>div>div>canvas {
+    background-color: aliceblue;
+    border-radius: 50%;
+  }
+
+  .custom-reward-win>div>img {
+    top: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .custom-reward-win>div>div>canvas {
+    rotate: -45deg;
+  }
+}

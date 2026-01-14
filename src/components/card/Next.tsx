@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../UI/Button";
-import { ReactComponent as Loader } from "../../assets/images/loader.svg";
+import Loader from "../../assets/images/loader.svg";
 import upSideSvg from "../../assets/images/UpSide.svg";
 import downSideSvg from "../../assets/images/DownSide.svg";
 import { PRESICION_LENGTH } from "../../constants/common";

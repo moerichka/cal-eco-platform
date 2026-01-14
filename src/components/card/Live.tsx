@@ -4,9 +4,9 @@ import { BigNumber } from "@ethersproject/bignumber";
 
 import Button from "../../UI/Button";
 import RangeSlider from "../../common/RangeSlider";
-import { ReactComponent as Down } from "../../assets/images/down.svg";
-import { ReactComponent as Loader } from "../../assets/images/loader.svg";
-import { ReactComponent as Back } from "../../assets/images/back.svg";
+import Down from "../../assets/images/down.svg";
+import Loader from "../../assets/images/loader.svg";
+import Back from "../../assets/images/back.svg";
 import upSideSvg from "../../assets/images/UpSide.svg";
 import downSideSvg from "../../assets/images/DownSide.svg";
 import Tick from "../../assets/images/Tick.gif";
@@ -87,7 +87,7 @@ const Body = ({
           {userRound ? (
             <div className="space-y-2 h-48 border-[#3D8DFF] border-[1px] border-solid p-2 mx-2 rounded-lg text-white ">
               <div className="flex flex-col items-center justify-center h-full text-sm">
-                <img src={Tick} alt="tick" className="h-32 opacity-70" />
+                <Tick alt="tick" className="h-32 opacity-70" />
                 <div className="flex items-center justify-center gap-1 text-xxs">
                   YOU HAVE ENTERED:
                   <div className="bg-[#596CC4] rounded-lg px-2 py-1">

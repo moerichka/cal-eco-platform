@@ -1,4 +1,12 @@
-import React, { useEffect, useContext, useState, useRef, useCallback } from "react";
+"use client";
+
+import React, {
+  useEffect,
+  useContext,
+  useState,
+  useRef,
+  useCallback,
+} from "react";
 import { BigNumber, Contract } from "ethers";
 import { MetmaskContext } from "../contexts/MetmaskContextProvider";
 import Timer from "../components/Timer";
@@ -29,7 +37,7 @@ import {
 import Prev from "../components/card/Prev";
 import Live from "../components/card/Live";
 import Next from "../components/card/Next";
-import { ReactComponent as Back } from "../assets/images/back.svg";
+import Back from "../assets/images/back.svg";
 
 import AnimatedNumber from "../common/AnimatedNumber";
 import { SCROLL_AMOUNT, PRESICION_LENGTH } from "../constants/common";
@@ -105,64 +113,67 @@ const Dashboard: React.FC<{}> = () => {
     [lumanagiPredictionV1Contract]
   );
 
-  const setDisplayData = useCallback(async (selectedEpoch: number) => {
-    const epochIds = [];
-    const tempRounds = [];
-    const prevData: any = {};
-    if (rounds.length > 0) {
-      rounds.forEach((round) => {
-        prevData[round.epoch] = { ...round };
-      });
-    }
-    for (let index = PREVIOUS_ROUNDS + 1; index > 0; index--) {
+  const setDisplayData = useCallback(
+    async (selectedEpoch: number) => {
+      const epochIds = [];
+      const tempRounds = [];
+      const prevData: any = {};
+      if (rounds.length > 0) {
+        rounds.forEach((round) => {
+          prevData[round.epoch] = { ...round };
+        });
+      }
+      for (let index = PREVIOUS_ROUNDS + 1; index > 0; index--) {
+        tempRounds.push({
+          ...(prevData[selectedEpoch - index]
+            ? prevData[selectedEpoch - index]
+            : {}),
+          live: true,
+          active: false,
+          epoch: selectedEpoch - index,
+        });
+      }
+      epochIds.push(selectedEpoch);
       tempRounds.push({
-        ...(prevData[selectedEpoch - index]
-          ? prevData[selectedEpoch - index]
-          : {}),
         live: true,
-        active: false,
-        epoch: selectedEpoch - index,
+        active: true,
+        epoch: selectedEpoch,
+        ...(prevData[selectedEpoch] ? prevData[selectedEpoch] : {}),
       });
-    }
-    epochIds.push(selectedEpoch);
-    tempRounds.push({
-      live: true,
-      active: true,
-      epoch: selectedEpoch,
-      ...(prevData[selectedEpoch] ? prevData[selectedEpoch] : {}),
-    });
-    for (let index = 1; index <= NEXT_ROUNDS; index++) {
-      epochIds.push(selectedEpoch + index);
-      tempRounds.push({
-        live: false,
-        active: index > 1 ? false : true,
-        epoch: selectedEpoch + index,
-      });
-    }
-    setRounds(tempRounds);
-    const allData = await getRoundsData(tempRounds);
-    setCurrentEpochData(allData[PREVIOUS_ROUNDS + 1]);
-    setCurrentEpoch(selectedEpoch);
-    const lockEpochDataTimpStamp = allData[PREVIOUS_ROUNDS + 1].lockTimestamp;
-    const secondsData = getSecondsDiffrence(
-      new Date(),
-      convertEpochToDate(lockEpochDataTimpStamp)
-    );
-    setOldest(allData[0]);
-    setRounds(allData.filter((data, index) => index !== 0));
-    if (secondsData > 0) {
-      setSeconds(secondsData % 60);
-      setMinutes(secondsData < 60 ? 0 : Math.floor(secondsData / 60));
-      setCalculating(false);
-    }
-    if (account) {
-      const userRounds = await getUserRounds(
-        lumanagiPredictionV1Contract as Contract,
-        account
+      for (let index = 1; index <= NEXT_ROUNDS; index++) {
+        epochIds.push(selectedEpoch + index);
+        tempRounds.push({
+          live: false,
+          active: index > 1 ? false : true,
+          epoch: selectedEpoch + index,
+        });
+      }
+      setRounds(tempRounds);
+      const allData = await getRoundsData(tempRounds);
+      setCurrentEpochData(allData[PREVIOUS_ROUNDS + 1]);
+      setCurrentEpoch(selectedEpoch);
+      const lockEpochDataTimpStamp = allData[PREVIOUS_ROUNDS + 1].lockTimestamp;
+      const secondsData = getSecondsDiffrence(
+        new Date(),
+        convertEpochToDate(lockEpochDataTimpStamp)
       );
-      setUserRounds(userRounds);
-    }
-  }, [account, getRoundsData, lumanagiPredictionV1Contract, rounds]);
+      setOldest(allData[0]);
+      setRounds(allData.filter((data, index) => index !== 0));
+      if (secondsData > 0) {
+        setSeconds(secondsData % 60);
+        setMinutes(secondsData < 60 ? 0 : Math.floor(secondsData / 60));
+        setCalculating(false);
+      }
+      if (account) {
+        const userRounds = await getUserRounds(
+          lumanagiPredictionV1Contract as Contract,
+          account
+        );
+        setUserRounds(userRounds);
+      }
+    },
+    [account, getRoundsData, lumanagiPredictionV1Contract, rounds]
+  );
   /**
    * Handles callback for start round event
    * @param epoch Epoch of newly started round
@@ -323,17 +334,14 @@ const Dashboard: React.FC<{}> = () => {
 
     const startHandler = (event: any) =>
       startRoundCallback(event.returnValues.epoch);
-    const betHandler = (event: any) =>
-      handleBetEvent(event.returnValues.epoch);
+    const betHandler = (event: any) => handleBetEvent(event.returnValues.epoch);
 
     startRoundEvent.on("data", startHandler);
     betBearEvent.on("data", betHandler);
     betBullEvent.on("data", betHandler);
 
     (async () => {
-      const currentEpoch = await getCurrentEpoch(
-        lumanagiPredictionV1Contract
-      );
+      const currentEpoch = await getCurrentEpoch(lumanagiPredictionV1Contract);
       await setDisplayData(currentEpoch);
       await getBalance();
 

@@ -1,8 +1,8 @@
 import type { AddEthereumChainParameter } from "@web3-react/types";
 
-const infuraKey = process.env.REACT_APP_INFURA_KEY;
-const alchemyKey = process.env.REACT_APP_ALCHEMY_API_KEY;
-const pocketNetwork = process.env.REACT_APP_POCKET_KEY;
+const infuraKey = process.env.NEXT_PUBLIC_INFURA_KEY;
+const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
+const pocketNetwork = process.env.NEXT_PUBLIC_POCKET_KEY;
 
 const ETH: AddEthereumChainParameter["nativeCurrency"] = {
   name: "Ether",
@@ -92,7 +92,7 @@ export const CHAINS: {
     chainId: "5",
     urls: [
       infuraKey
-        ? `https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
+        ? `https://goerli.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
         : "",
       alchemyKey ? `https://eth-goerli.g.alchemy.com/v2/${alchemyKey}` : "",
       pocketNetwork
@@ -109,7 +109,7 @@ export const CHAINS: {
     chainId: "137",
     urls: [
       infuraKey
-        ? `https://polygon-mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
+        ? `https://polygon-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
         : "",
       alchemyKey
         ? `https://polygon-mainnet.g.alchemy.com/v2/${alchemyKey}`
@@ -128,7 +128,7 @@ export const CHAINS: {
     urls: [
       "https://rpc-mumbai.maticvigil.com",
       infuraKey
-        ? `https://polygon-mumbai.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
+        ? `https://polygon-mumbai.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}`
         : "",
       alchemyKey ? `https://polygon-mumbai.g.alchemy.com/v2/${alchemyKey}` : "",
     ].filter((url) => url !== ""),

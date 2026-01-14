@@ -3,13 +3,13 @@ import useAuth from "../../hooks/useAuth";
 
 import user, { StatsTimelines } from "../../__mocks__/StrangerProfile";
 
-import { ReactComponent as Verified } from "../../assets/images/verified.svg";
-import { ReactComponent as StatsUp } from "../../assets/images/profile-stats-up.svg";
-import { ReactComponent as StatsDown } from "../../assets/images/profile-stats-down.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/images/Setting.svg";
+import Verified from "../../assets/images/verified.svg";
+import StatsUp from "../../assets/images/profile-stats-up.svg";
+import StatsDown from "../../assets/images/profile-stats-down.svg";
+import SettingsIcon from "../../assets/images/Setting.svg";
 import { useNavigate } from "react-router";
 // import Banner1 from "../../assets/images/stranger-profile-banner1.svg";
-// import { ReactComponent as Banner2 } from "../../assets/images/stranger-profile-banner2.svg";
+// import Banner2 from "../../assets/images/stranger-profile-banner2.svg";
 
 type Stats = {
   time: string;

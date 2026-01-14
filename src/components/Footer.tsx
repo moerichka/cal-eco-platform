@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 
 import WhiteLogo from "../assets/images/header-logo-white.svg";
@@ -48,13 +50,16 @@ const SocialMedia = () => {
   return (
     <>
       <div className="flex my-8 space-x-8">
-        {socialMediaIcons.map((data, index) => (
-          <React.Fragment key={`social-media-icon-item-${index}`}>
-            <a href={data.link}>
-              <img src={data.icon} alt={data.type} />
-            </a>
-          </React.Fragment>
-        ))}
+        {socialMediaIcons.map((data, index) => {
+          const IconComponent = data.icon;
+          return (
+            <React.Fragment key={`social-media-icon-item-${index}`}>
+              <a href={data.link} target="_blank" rel="noopener noreferrer">
+                <IconComponent alt={data.type} className="w-6 h-6" />
+              </a>
+            </React.Fragment>
+          );
+        })}
       </div>
     </>
   );
@@ -164,7 +169,7 @@ export function Footer() {
       <div className="flex justify-between mx-20 mt-40">
         <div className="flex flex-col justify-center">
           <a className="w-full h-full" href="https://lumanagi.com">
-            <img src={WhiteLogo} alt="logo" className="max-w-full w-72" />
+            <WhiteLogo alt="logo" className="max-w-full w-72" />
           </a>
           <SocialMedia />
         </div>

@@ -30,7 +30,7 @@ const SignMessage: React.FC = (): ReactElement => {
       // Define the chain
       chainId: chainId,
       // Add verifying contract to make sure you are establishing contracts with the proper entity
-      verifyingContract: `${process.env.REACT_APP_VERIFYING_CONTRACT}`,
+      verifyingContract: `${process.env.NEXT_PUBLIC_VERIFYING_CONTRACT}`,
     };
 
     const types = {

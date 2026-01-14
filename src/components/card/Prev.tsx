@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
 import { MAX_TIMER_IN_MINUTES, PRESICION_LENGTH } from "../../constants/common";
-import { ReactComponent as Down } from "../../assets/images/down.svg";
-import { ReactComponent as Loader } from "../../assets/images/loader.svg";
+import Down from "../../assets/images/down.svg";
+import Loader from "../../assets/images/loader.svg";
 
 import upSideSvg from "../../assets/images/UpSide.svg";
 import downSideSvg from "../../assets/images/DownSide.svg";
