@@ -147,6 +147,15 @@ class MockDataService {
     return [];
   }
 
+  getUserByEmail(email) {
+    for (const user of this.users.values()) {
+      if (user.email?.toLowerCase() === email?.toLowerCase()) {
+        return [user];
+      }
+    }
+    return [];
+  }
+
   getUserByReferralCode(referralCode) {
     for (const user of this.users.values()) {
       if (user.referral_code === referralCode) {

@@ -13,6 +13,15 @@ const logger = require('../utils/logger');
 const LOGIN_MESSAGE = 'Login Quant Fund';
 const SALT_ROUNDS = 12;
 
+const generateToken = (user) => {
+  const token = jwt.sign(
+    { id: user.id, address: user.address, email: user.email },
+    config.JWT_SECRET_KEY,
+    { expiresIn: config.SESSION_EXPIRES_IN }
+  );
+  return token;
+};
+
 const verifyWalletAddress = async (
   publicAddress,
   signature,
@@ -102,16 +111,13 @@ exports.loginWithSignature = async (req, res, next) => {
     }
 
     const user = users[0];
-    const token = jwt.sign(
-      { id: user.id, address: user.address },
-      config.JWT_SECRET_KEY,
-      { expiresIn: config.SESSION_EXPIRES_IN }
-    );
+    const token = generateToken(user);
 
     const { response, statusCode } = successResponse(
       {
         id: user.id,
         address: user.address,
+        email: user.email,
         referral_code: user.referral_code,
         authToken: token,
         is_admin: user.is_admin,
@@ -141,6 +147,38 @@ exports.register = async (req, res, next) => {
   const { response, statusCode } = successResponse(
     user,
     'Registration successful'
+  );
+  return res.status(statusCode).json(response);
+};
+
+exports.loginWithPassword = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const users = await UserModel.getUsersByEmail(email);
+  const user = users[0];
+
+  if (!user) {
+    const { response, statusCode } = errorResponse('User not found', 404);
+    return res.status(statusCode).json(response);
+  }
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    const { response, statusCode } = errorResponse('Invalid password', 401);
+    return res.status(statusCode).json(response);
+  }
+
+  const token = generateToken(user);
+  const { response, statusCode } = successResponse(
+    {
+      id: user.id,
+      address: user.address,
+      email: user.email,
+      referral_code: user.referral_code,
+      authToken: token,
+      is_admin: user.is_admin,
+    },
+    'Login successful'
   );
   return res.status(statusCode).json(response);
 };

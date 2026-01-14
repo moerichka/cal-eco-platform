@@ -5,6 +5,10 @@ class UserModel {
     return mockData.createUser(data);
   }
 
+  async getUsersByEmail(email) {
+    return mockData.getUserByEmail(email);
+  }
+
   async getUsersDetailsAddress(data) {
     return mockData.getUserByAddress(data.address);
   }
