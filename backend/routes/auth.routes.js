@@ -3,6 +3,7 @@ const router = express.Router();
 const authController = require('../controllers/auth.controller');
 const { ensureWebToken } = require('../middleware/auth.middleware');
 
+router.post('/register', authController.register);
 router.post('/login-signature', authController.loginWithSignature);
 router.get('/me', ensureWebToken, authController.me);
 router.post('/refresh', authController.refresh);
